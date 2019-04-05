@@ -33,7 +33,7 @@ gem "unicorn"
 # NOTE: https://github.com/sj26/mailcatcher#bundler
 # gem 'mailcatcher'
 
-group :development, :mysql do
+group :development do
   gem "better_errors"
   gem "binding_of_caller"
   gem "brakeman"
@@ -49,15 +49,11 @@ group :development, :mysql do
   gem "travis-lint"
 end
 
-group :development, :test, :mysql do
+group :development, :test do
   gem "capybara"
   gem "database_cleaner"
   gem "launchy"
   gem "poltergeist"
   gem "rspec-rails"
   gem "test-unit"
-end
-
-group :mysql do
-  gem "mysql2"
 end

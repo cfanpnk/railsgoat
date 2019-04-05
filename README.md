@@ -10,7 +10,8 @@ If you are looking for support or troubleshooting assistance, please visit our [
 
 To begin, if you do not have Ruby, Git, MySQL, and Postgres, we suggest
 using this [site](https://gorails.com/setup) to install the software.
-Pick the appropriate operating system and follow the instructions.
+Pick the appropriate operating system and follow the instructions. Make sure you
+install ruby **2.6.1**.
 
 After installing the above software, clone this repo:
 
@@ -93,21 +94,6 @@ To run just one spec:
 
 ```
 $ rails training SPEC=spec/vulnerabilities/sql_injection_spec.rb
-```
-
-## MySQL Environment
-
-By default in development mode Railsgoat runs with a SQLite database. There is an environment defined to use MySQL. For some of the SQL injection vulnerabilities to work you have to run the app with MySQL as the database. The following steps will setup and run Railsgoat to use MySQL. *MySQL must be installed and running before running these steps*
-
-```
-#Create the MySQL database
-RAILS_ENV=mysql rails db:create
-
-#Run the migrations against the database
-RAILS_ENV=mysql rails db:migrate
-
-#Boot Rails using MySQl
-RAILS_ENV=mysql rails s
 ```
 
 ## Processing Email
