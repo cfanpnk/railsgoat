@@ -2,58 +2,24 @@
 
 RailsGoat is a vulnerable version of the Ruby on Rails Framework from versions 3 to 5. It includes vulnerabilities from the OWASP Top 10, as well as some "extras" that the initial project contributors felt worthwhile to share. This project is designed to educate both developers, as well as security professionals.
 
-## Support
+## Important Note
 
-If you are looking for support or troubleshooting assistance, please visit our [OWASP Slack Channel](https://owasp.slack.com/messages/project-railsgoat/).
+These directions have been modified from those on the OWASP official version,
+for easier (I think) setup.
 
 ## Getting Started
 
-To begin, if you do not have Ruby, Git, MySQL, and Postgres, we suggest
-using this [site](https://gorails.com/setup) to install the software.
-Pick the appropriate operating system and follow the instructions. Make sure you
-install ruby **2.6.1**.
+To begin, if you do not have Ruby, and Git I suggest using the docker-compose
+setup. If you can setup the application before you arrive at he workshop, that
+will help enormously (if only to save bandwidth vs walk-ins).
 
-After installing the above software, clone this repo:
-
-```bash
-$ git clone git@github.com:OWASP/railsgoat.git
-```
-
-**NOTE: NOT NECESSARY IF YOU WANT TO WORK WITH RAILS 5.** Otherwise, if you wish to use the Rails 3 or 4 versions, you'll need to switch branches:
+## Clone this repo
 
 ```bash
-$ cd railsgoat
-$ git checkout rails_3_2
-$ git checkout rails_4_2
+$ git clone git@github.com:paytonrules/railsgoat.git
 ```
 
-Navigate into the directory (already there if you followed the previous step) and install the dependencies:
-
-```bash
-$ bundle install
-```
-
-If you receive an error, make sure you have `bundler` installed:
-
-```bash
-$ gem install bundler
-```
-
-Initialize the database:
-
-```bash
-$ rails db:setup
-```
-
-Start the Thin web server:
-
-```bash
-$ rails server
-```
-
-Open your favorite browser, navigate to `http://localhost:3000` and start hacking!
-
-## Docker Install
+### Docker Install
 To run Railsgoat with Docker you must first have [Docker](https://docs.docker.com/engine/installation/) and [Docker Compose](https://docs.docker.com/compose/install/) installed. Once those dependencies are installed, cd into the Railsgoat directory where you've cloned the code and run. Rails requires Compose **1.6.0** or above and require a Docker Engine of version **1.10.0** or above.
 
 ```
@@ -82,45 +48,45 @@ Exiting
 ```
 In this case, remove that server.pid file and try again. Note also that this file is in your current working directory, not inside the container.
 
-## Capybara Tests
+### Non-Docker Install (Mac)
 
-RailsGoat now includes a set of failing Capybara RSpecs, each one indicating that a separate vulnerability exists in the application. To run them, you first need to install [PhantomJS](https://github.com/jonleighton/poltergeist#installing-phantomjs) (version 2.1.1 has been tested in Dev and on Travis CI), which is required by the Poltergeist Capybara driver. Upon installation, simply run the following task:
+For Mac users I recommend using [[https://asdf-vm.com/#/][asdf]] to version the
+Ruby environment. Assuming you've installed ~asdf~ you can navigate to the
+rails-goat directory:
 
-```
-$ rails training
-```
-
-To run just one spec:
-
-```
-$ rails training SPEC=spec/vulnerabilities/sql_injection_spec.rb
-```
-
-## Processing Email
-
-In order for RailsGoat to effectively process email, you will first need to run MailCatcher, an SMTP server that will intercept email messages and display them in a web interface.
-
-Mailcatcher is not installed by default. To install MailCatcher and start an instance of it, simply run:
-
-```
-$ gem install mailcatcher
-$ mailcatcher
+``` bash
+asdf plugin-add ruby
+asdf install ruby 2.6.1
+asdf local ruby 2.6.1
+bundle install
 ```
 
-If successful, you should see the following output:
+If you receive an error, make sure you have `bundler` installed:
 
-```
-Starting MailCatcher
-==> smtp://127.0.0.1:1025
-==> http://127.0.0.1:1080
-*** MailCatcher runs as a daemon by default. Go to the web interface to quit.
+```bash
+gem install bundler
 ```
 
-Alternatively, you can run MailCatcher in the foreground by running `mailcatcher -f` in your terminal.
+Initialize the database:
+
+```bash
+bundle exec rails db:setup
+```
+
+Start the Thin web server:
+
+```bash
+bundle exec rails server
+```
+
+Open your favorite browser, navigate to `http://localhost:3000` and start hacking!
+
 
 ## Contributing
 
-Please see our [contribution document](./CONTRIBUTING.md) to learn more. Additionally, note that as changes are made to the application, the Capybara RSpecs can be used to verify that the vulnerabilities in the application are still intact. To use them in this way, and have them change to `pending` instead of `fail`, set the `RAILSGOAT_MAINTAINER` environment variable.
+
+This version of RailsGoat is custom-built for my workshops. If you're looking
+to contribute head to the [official repository](https://github.com/OWASP/railsgoat).
 
 Conversion to the OWASP Top Ten 2013 completed in November, 2013.
 
