@@ -50,7 +50,7 @@ In this case, remove that server.pid file and try again. Note also that this fil
 
 ### Non-Docker Install (Mac)
 
-For Mac users I recommend using [[https://asdf-vm.com/#/][asdf]] to version the
+For Mac users I recommend using [asdf](https://asdf-vm.com/#/) to version the
 Ruby environment. Assuming you've installed ~asdf~ you can navigate to the
 rails-goat directory:
 
@@ -80,6 +80,12 @@ bundle exec rails server
 ```
 
 Open your favorite browser, navigate to `http://localhost:3000` and start hacking!
+
+### Non-Mac Users
+
+You can use your personal ruby version manager, and follow the directions to get setup. 
+I am not a regular Windows or Linux user, so rather than recommending a setup I would 
+say that you probably know how to set it up better than I do.
 
 
 ## Contributing
